@@ -1,12 +1,17 @@
+//
+//  ModelLocation.swift
+//  MapTaskTest
+//
+//  Created by Temur on 23/10/2021.
+//
+
 import CoreLocation
 
-class LocationPermition: NSObject, ObservableObject {
-
-    static let shared = LocationPermition()
-    static let DefaultLocation = CLLocationCoordinate2D(latitude: 53.896173, longitude: 27.538401)
+class LocationHelper: NSObject, ObservableObject {
+    static let shared = LocationHelper()
+    static let DefaultLocation = CLLocationCoordinate2D(latitude: 45.8827419, longitude: -1.1932383)
     static var currentLocation: CLLocationCoordinate2D {
-        guard let location = shared.locationManager.location
-        else {
+        guard let location = shared.locationManager.location else {
             return DefaultLocation
         }
         return location.coordinate
@@ -23,7 +28,7 @@ class LocationPermition: NSObject, ObservableObject {
     }
 }
 
-extension LocationPermition: CLLocationManagerDelegate {
+extension LocationHelper: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { }
 
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
