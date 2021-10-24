@@ -1,6 +1,6 @@
 //
 //  MapView.swift
-//  mapTest
+//  MapTaskSwiftUI
 //
 //  Created by Temur on 22/10/2021.
 //
@@ -27,12 +27,8 @@ struct MapView: UIViewRepresentable {
         //
     }
     class Coordinator: NSObject, MKMapViewDelegate{
-        
         func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-           
         }
-        
-        
         
         //
         

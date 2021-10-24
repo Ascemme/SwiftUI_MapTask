@@ -1,6 +1,6 @@
 //
 //  Home.swift
-//  mapTest
+//  MapTaskSwiftUI
 //
 //  Created by Temur on 22/10/2021.
 //
@@ -14,8 +14,7 @@ struct Home: View {
     
     @State var locationManager = CLLocationManager()
     @StateObject var mapData = MapViewModel()
-    @State  var cityName = ""
-    
+    @State private var weatherShower = false
     //Location manager
     var body: some View {
         ZStack{
@@ -23,7 +22,7 @@ struct Home: View {
             MapView()
             // using it as enviroment object so that if can be used ints subViews
                 .environmentObject(mapData)
-            
+                .edgesIgnoringSafeArea(.top)
             
             VStack{
                 VStack{
@@ -59,7 +58,7 @@ struct Home: View {
                         .background(Color.white)
                     }
                     
-                    Text("Your location is in \(mapData.countryName)")
+                  
                     
                     
                 }
@@ -81,14 +80,19 @@ struct Home: View {
                                 .background(Color.primary)
                                 .clipShape(Circle())
                         })
-                        Button(action: mapData.weatherSerch, label: {
+                        Button(action: {
+                            mapData.weatherSerch()
+                            self.weatherShower.toggle()
+                            
+                        }, label: {
                             Image(systemName: mapData.mapType == .standard ? "cloud.sun" : "cloud.sun.fill")
                                 .font(.title2)
                                 .padding(10)
                                 .background(Color.primary)
                                 .clipShape(Circle())
-                        })
-                        
+                        }).sheet(isPresented: $weatherShower){
+                            ShowWeathar()
+                        }
                         Button(action: mapData.updateMapType, label: {
                             Image(systemName: mapData.mapType == .standard ? "network" : "map")
                                 .font(.title2)
@@ -126,6 +130,11 @@ struct Home: View {
             
         })
     }}
+
+
+
+
+
 
 
 

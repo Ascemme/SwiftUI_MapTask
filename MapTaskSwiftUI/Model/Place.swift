@@ -1,6 +1,6 @@
 //
 //  Place.swift
-//  mapTest
+//  MapTaskSwiftUI
 //
 //  Created by Temur on 22/10/2021.
 //

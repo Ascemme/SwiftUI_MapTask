@@ -1,6 +1,6 @@
 //
 //  MapViewModel.swift
-//  mapTest
+//  MapTaskSwiftUI
 //
 //  Created by Temur on 22/10/2021.
 //
@@ -31,7 +31,11 @@ class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate{
     @Published var places: [Place] = []
     
     
-    @Published var cityName: String = ""
+    @Published var cityName: String = "12"
+    
+    
+    
+    
     var streentName: String = ""
     var countryName: String = ""
     
@@ -58,7 +62,7 @@ class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate{
     func weatherSerch() {
         print(mapView.centerCoordinate)
         textShowLocation()
-       
+        
     }
     // name of reverseGeocode
     func textShowLocation() -> Void{
@@ -74,7 +78,8 @@ class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate{
             self.streentName = placemarks.subThoroughfare ?? ""
             self.cityName = placemarks.thoroughfare ?? ""
             self.countryName = placemarks.country ?? ""
-    })
+            
+        })
         
     }
     
@@ -117,13 +122,7 @@ class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate{
         let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.setVisibleMapRect(mapView.visibleMapRect, animated: true)
-        
-        
-        
     }
-    
-    
-    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         //cheking permition
         switch manager.authorizationStatus{
